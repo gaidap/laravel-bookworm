@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use function Termwind\render;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): View
     {
-       return "Hello, World!";
+        $title = $request->input('title');
+        $books = Book::when($title, static fn($query, $title) => $query->where('title', 'like', "%$title%"))->get();
+
+        return view('books.index', compact('books'));
     }
 
     /**

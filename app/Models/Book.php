@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
+/**
+ * @method static when(mixed $title, \Closure $param)
+ */
 class Book extends Model
 {
     use HasFactory;
